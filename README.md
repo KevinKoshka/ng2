@@ -1,27 +1,23 @@
-# HeroTour
+El comando **ng serve** buildea la app, inicia el server, mira los archivos fuente, y rebuildea la app a medida que se hacen cambios a esos archivos.
+El flag **--open** abre el browser en **http://localhost:4200**.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
+Los **Components** son los bloques fundamentales de las aplicaciones de Angular.
+Por default cuando se crea un componente, se crean:
+...component.ts: la clase del componente en Typescript.
+...component.html: El template del componente, en pseudo-HTML.
+...component.css: los estilos del componente.
 
-## Development server
+En NG2 la notación de doble corchete **{{algo}}** es la sintaxis de binding con las propiedades de la clase del componente.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para generer un componente: **ng generate component name**. Siempre se debe importar **Component** de la librería core de angular, y se debe anotar el componente mediante el decorador **@Component**, que especifica la metadate del componente.
+El método de clase **ngOnInit()** es un hook del lifecycle que Angular llama luego de crear un componente. Al final siempre debe exportarse el componente.
 
-## Code scaffolding
+Para formatear los datos mostrados en el template, se usan los pipes, que actuan de igual manera que los filters de NG1 **{{something | pipename}}**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Se dice que Angular hace un two way binding cuando los datos van de la clase del componente al template, y de vuelta a la clase. La sintaxis que permite esto va **[(ngModel)]="prop.name"**.
 
-## Build
+Angular también crea el archivo **...module.ts** que lo único que contiene es el decorador **ngModule**, que también incorpora metadata crítica pertinente al módulo, como otros módulos que usa para extender la funcionalidad, y los componentes, pipes y directivas pertenecientes al módulo, también pueden añadir servicios a la aplicación. Los módulos describen como encajan entre sí las distintas partes de la aplicación. Toda aplicación tiene al menos un módulo: el módulo root.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Para hacer binding con el CSS se usa la notación: **[class.class-name]="condition"**.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Para pasar propiedades de un componente a otro se usa el **Property Binding** con la notación: **< app-hero-detail [hero]="currentHero">< /app-hero-detail>**
