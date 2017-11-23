@@ -20,4 +20,9 @@ Angular también crea el archivo **...module.ts** que lo único que contiene es 
 
 Para hacer binding con el CSS se usa la notación: **[class.class-name]="condition"**.
 
-Para pasar propiedades de un componente a otro se usa el **Property Binding** con la notación: **< app-hero-detail [hero]="currentHero">< /app-hero-detail>**
+Para pasar propiedades de un componente a otro se usa el **Property Binding** con la notación: **< app-hero-detail [hero]="currentHero">< /app-hero-detail>** También conocido como property binding, los datos fluyen de una propiedad de un componente hacia la propiedad del elemento/componente/directiva. Solo se usa para meter datos y no leer.
+
+Cuando el valor fluye hacia una propiedad en un property binding, ésta es una propiedad de **Input** seteable que se anota con el decorador **@Input**.
+Una propiedad viaja hacia afuera de un componente mediante una propiedad de **Output** con el decorador **@Output**. Estas propiedades casi siempre retornan un EventEmitter de Angular mediante un **event biding**.
+
+Para crear servicios se usa el comando **ng generate service name**. El .ts generado viene con el decorador **@Injectable** que indica que puede tener dependencias inyectables.
