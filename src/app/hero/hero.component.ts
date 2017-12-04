@@ -14,7 +14,8 @@ export class HeroComponent implements OnInit {
     this.selectedHero = hero;
   }
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
   }
   //El parámetro del constructor simultáneamente define una variable privada heroService
   //y lo identifica como el sitio de inyección del HeroService. Cuando Angular crea el componente,

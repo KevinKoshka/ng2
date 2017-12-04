@@ -25,4 +25,20 @@ Para pasar propiedades de un componente a otro se usa el **Property Binding** co
 Cuando el valor fluye hacia una propiedad en un property binding, ésta es una propiedad de **Input** seteable que se anota con el decorador **@Input**.
 Una propiedad viaja hacia afuera de un componente mediante una propiedad de **Output** con el decorador **@Output**. Estas propiedades casi siempre retornan un EventEmitter de Angular mediante un **event biding**.
 
-Para crear servicios se usa el comando **ng generate service name**. El .ts generado viene con el decorador **@Injectable** que indica que puede tener dependencias inyectables.
+Para crear servicios se usa el comando **ng generate service name**. El .ts generado viene con el decorador **@Injectable** que indica que puede tener dependencias inyectables. Si un servicio debiera recibir datos de un servidor remoto de manera asincrónica, éste debería eperar a la respuesta del servidor para continuar. El método en sí que maneje el pedido debe tener una **firma asincrónica**, que puede ser una **Promise** o un **Observable**. Para este último, se usa la clase **Observable** de la librería **RxJS** que sirve para componer código asincrónico. Se usa esta librería en particular, porque los métodos de **HttpClient** de NG2 retornan Observables.
+
+```javascript
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+```
+Al servicio Observable se puede suscribir cualquiera, y el servicio notifica cuando termina la operación asincrónica.
+
+En NG2 una buena práctica es cargar y configurar el router en un módulo separado en alto nivel. Por convención debería llamarse **AppRoutingModule**, y dentro del .ts generado, se importa:
+```javascript
+import { RouterModule, Routes } from '@angular/router';
+@NgModule({
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}
+```
+
